@@ -13,11 +13,12 @@ import java.util.*;
  * @author ruenyenchin
  */
 public class Register {
-    private List<String> registerList = new ArrayList<>();
+    private final List<String> registerList = new ArrayList<>();
     
    
     public void registerInput(){
         Integer input;
+        System.out.println("hh");
 
         input = choice(1,2);   
         
