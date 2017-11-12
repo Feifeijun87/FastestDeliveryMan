@@ -17,9 +17,9 @@ public class TestProgram {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("HI");
+        
 
-        User user1 = new User();
+        User user1 = new User("Fiffy","cute88","Jalan Cutie","011-111111");
         
         Item item1 = new Item("Chicken Chop", 12.90, "Golden chicken coated with ABC gravy");
         Item item2 = new Item("Spaghetti Bolognese", 10.90, "Tomato sauce spaghetti with meatballs");
@@ -47,6 +47,8 @@ public class TestProgram {
         //Order
         List<Order> order = new ArrayList<>();
         
+        System.out.println("HI, " + user1.getUsername());
+        
         orderFood(restaurantList,user1);
 
         
@@ -65,8 +67,6 @@ public class TestProgram {
         }
        
     }
-
-
 
     public static void orderFood(List<Restaurant> restaurantList, User user)
     {
@@ -198,7 +198,7 @@ public class TestProgram {
         } while (newOrder == 'Y' || newOrder == 'y');
     }
     
-        public static int choice(int min, int max)  {
+    public static int choice(int min, int max)  {
         int choice = 0;
         boolean valid;
 
