@@ -17,7 +17,7 @@ public class TestProgram {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        
+        System.out.println("HI");
 
         User user1 = new User();
         
