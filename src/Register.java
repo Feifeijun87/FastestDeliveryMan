@@ -123,7 +123,7 @@ public class Register {
         System.out.println("Street Address: " + registerList.get(6));
         System.out.println("Phone: " + registerList.get(7));
         System.out.println("Username: " + registerList.get(8));
-        System.out.println("Password: " + registerList.get(9));
+        
     }
     
     public static void main(String args[]){
