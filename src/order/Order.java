@@ -41,6 +41,11 @@ public class Order {
         this.total = total;
         count++;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" + "orderID=" + orderID + ", user=" + user + ", restaurant=" + restaurant + ", orderItem=" + orderItem + ", quantity=" + quantity + ", total=" + total + '}';
+    }
     
    
 }

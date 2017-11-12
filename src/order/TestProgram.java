@@ -49,7 +49,7 @@ public class TestProgram {
         
         System.out.println("HI, " + user1.getUsername());
         
-        orderFood(restaurantList,user1);
+        orderFood(restaurantList,user1,order);
 
         
         
@@ -68,7 +68,7 @@ public class TestProgram {
        
     }
 
-    public static void orderFood(List<Restaurant> restaurantList, User user)
+    public static void orderFood(List<Restaurant> restaurantList, User user, List<Order> order)
     {
         Scanner scanner = new Scanner(System.in);
         Integer menuChoice;
@@ -166,6 +166,8 @@ public class TestProgram {
                         for (int i = 0; i < itemOrder.size(); i++) {
 
                             System.out.printf("%s   %d  %.2f", itemOrder.get(i).itemDetail(), qtyOrder.get(i), subtotal.get(i));
+                            System.out.println();
+                            System.out.println();
                             total += subtotal.get(i);
                         }
                         System.out.println();
@@ -176,12 +178,15 @@ public class TestProgram {
                         System.out.println("Confirm Order? <Y/N>");
                         payment = scanner.next().charAt(0);
                         if (payment == 'Y' || payment == 'y') {
-                            for (int i = 0; i<itemOrder.size();i++)
-                        {
+                           // for (int i = 0; i<itemOrder.size();i++)
+                        
                             Order orderNew = new Order(user,restaurantList.get(selection),itemOrder,qtyOrder,total);
+                            order.add(orderNew);
                             System.out.println("Order Complete !");
+                            System.out.println(order.get(order.size()-1).toString());
                             
-                            }
+                            
+                            
                         }
                     }
                     break;
