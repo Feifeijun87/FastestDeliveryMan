@@ -17,9 +17,9 @@ public class TestProgram {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("HI");
+        
 
-        User user1 = new User();
+        User user1 = new User("Fiffy","cute88","Jalan Cutie","011-111111");
         
         Item item1 = new Item("Chicken Chop", 12.90, "Golden chicken coated with ABC gravy");
         Item item2 = new Item("Spaghetti Bolognese", 10.90, "Tomato sauce spaghetti with meatballs");
@@ -28,15 +28,14 @@ public class TestProgram {
 
         List<Item> restABCMenu = new ArrayList<>();
         List<Item> restHappyMenu = new ArrayList<>();
-       // List<List> totalList = new ArrayList<>();
+   
         
         restABCMenu.add(item1);
         restABCMenu.add(item2);
         restHappyMenu.add(item3);
         restHappyMenu.add(item4);
 
-        //totalList.add(restABCMenu);
-        //totalList.add(restHappyMenu);
+        
         
         //Restaurant List
         Restaurant restABC = new Restaurant("Restaurant ABC", "Jalan Happy", "012-1111111", restABCMenu);
@@ -48,7 +47,9 @@ public class TestProgram {
         //Order
         List<Order> order = new ArrayList<>();
         
-        orderFood(restaurantList,user1);
+        System.out.println("HI, " + user1.getUsername());
+        
+        orderFood(restaurantList,user1,order);
 
         
         
@@ -67,17 +68,15 @@ public class TestProgram {
        
     }
 
-
-
-    public static void orderFood(List<Restaurant> restaurantList, User user)
+    public static void orderFood(List<Restaurant> restaurantList, User user, List<Order> order)
     {
         Scanner scanner = new Scanner(System.in);
         Integer menuChoice;
         char newOrder = 'n';
         Integer qty = 0;
-        char confirm;
+        char confirm,payment;
         char contOrder = 'n';
-        char payment;
+        
         int valid;
         Integer selection;
         
@@ -163,10 +162,12 @@ public class TestProgram {
 
                     if (valid != 0) {
                         System.out.println();
-                        System.out.println("Food            Price(RM)   Qty Subtotal(RM)");
+                        System.out.println("Food            Price(RM)   Qty   Subtotal(RM)");
                         for (int i = 0; i < itemOrder.size(); i++) {
 
                             System.out.printf("%s   %d  %.2f", itemOrder.get(i).itemDetail(), qtyOrder.get(i), subtotal.get(i));
+                            System.out.println();
+                            System.out.println();
                             total += subtotal.get(i);
                         }
                         System.out.println();
@@ -177,12 +178,15 @@ public class TestProgram {
                         System.out.println("Confirm Order? <Y/N>");
                         payment = scanner.next().charAt(0);
                         if (payment == 'Y' || payment == 'y') {
-                            for (int i = 0; i<itemOrder.size();i++)
-                        {
+                           // for (int i = 0; i<itemOrder.size();i++)
+                        
                             Order orderNew = new Order(user,restaurantList.get(selection),itemOrder,qtyOrder,total);
+                            order.add(orderNew);
                             System.out.println("Order Complete !");
+                            System.out.println(order.get(order.size()-1).toString());
                             
-                            }
+                            
+                            
                         }
                     }
                     break;
@@ -199,7 +203,7 @@ public class TestProgram {
         } while (newOrder == 'Y' || newOrder == 'y');
     }
     
-        public static int choice(int min, int max)  {
+    public static int choice(int min, int max)  {
         int choice = 0;
         boolean valid;
 
