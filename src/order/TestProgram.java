@@ -28,15 +28,14 @@ public class TestProgram {
 
         List<Item> restABCMenu = new ArrayList<>();
         List<Item> restHappyMenu = new ArrayList<>();
-       // List<List> totalList = new ArrayList<>();
+   
         
         restABCMenu.add(item1);
         restABCMenu.add(item2);
         restHappyMenu.add(item3);
         restHappyMenu.add(item4);
 
-        //totalList.add(restABCMenu);
-        //totalList.add(restHappyMenu);
+        
         
         //Restaurant List
         Restaurant restABC = new Restaurant("Restaurant ABC", "Jalan Happy", "012-1111111", restABCMenu);
@@ -75,9 +74,9 @@ public class TestProgram {
         Integer menuChoice;
         char newOrder = 'n';
         Integer qty = 0;
-        char confirm;
+        char confirm,payment;
         char contOrder = 'n';
-        char payment;
+        
         int valid;
         Integer selection;
         
@@ -163,7 +162,7 @@ public class TestProgram {
 
                     if (valid != 0) {
                         System.out.println();
-                        System.out.println("Food            Price(RM)   Qty Subtotal(RM)");
+                        System.out.println("Food            Price(RM)   Qty   Subtotal(RM)");
                         for (int i = 0; i < itemOrder.size(); i++) {
 
                             System.out.printf("%s   %d  %.2f", itemOrder.get(i).itemDetail(), qtyOrder.get(i), subtotal.get(i));
