@@ -18,7 +18,6 @@ public class Register {
    
     public void registerInput(){
         Integer input;
-        System.out.println("hh");
 
         input = choice(1,2);   
         
