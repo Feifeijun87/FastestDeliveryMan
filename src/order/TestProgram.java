@@ -104,8 +104,9 @@ public class TestProgram {
                     selection = selection -1;
                     System.out.println();
                     System.out.println(restaurantList.get(selection).getRestaurantName());
+                    System.out.println("============");
                     System.out.println();
-                    System.out.print("Please select menu : *press 0 to back*");
+                    System.out.println("Please select menu : *press 0 to back*");
                     System.out.println();
 
                     List<Item> temp = new ArrayList<>();
@@ -113,8 +114,11 @@ public class TestProgram {
 
                     do {
 
+                        System.out.printf("Num Food Name\t\t\tPrice(RM)\tDescription");
+                        System.out.println();
                         for (int i = 0; i < restaurantList.get(selection).getMenu().size(); i++) {
-                            System.out.println(i + 1 + " . " + temp.get(i).toString());
+                            System.out.printf("%d . %s\t\tRM%.2f\t\t%s",i + 1,temp.get(i).getFoodName(),temp.get(i).getFoodPrice(),temp.get(i).getDesc());
+                            System.out.println();
                         }
                         menuChoice = choice(0, restaurantList.get(selection).getMenu().size());
 
@@ -126,29 +130,39 @@ public class TestProgram {
                             default:
                                 valid =1;
                                 menuChoice -=1;
-                                System.out.println(temp.get(menuChoice).itemDetail());
-                                System.out.println("Quantity (Only 10 quantity per order per time) -> ");
+                                System.out.println();
+                                System.out.printf("%s\t\t%.2f\n",temp.get(menuChoice).getFoodName(), temp.get(menuChoice).getFoodPrice());
+                                System.out.println("Please select quantity \nMaximum 10 quantity per order per time\n");
                                 qty = choice(0, 10);
                                 switch (qty) {
                                     case 0:
                                         break;
                                     default:
-                                        System.out.println(temp.get(menuChoice).itemDetail());
+                                         System.out.println();
+                                        System.out.printf("%s\t\tRM%.2f\n",temp.get(menuChoice).getFoodName(), temp.get(menuChoice).getFoodPrice());
+                                
                                         System.out.println("Quantity = " + qty);                                       
-                                        System.out.println("Subtotal = " + qty *temp.get(menuChoice).getPrice() );                                      
+                                        System.out.printf("Subtotal = RM%.2f",qty *temp.get(menuChoice).getPrice() );    
+                                        System.out.println();
                                        System.out.println("Confirm Order ? <Y/N>");
                                         confirm = scanner.next().charAt(0);
 
-                                        if (confirm == 'Y' || confirm == 'y');
+                                        if (confirm == 'Y' || confirm == 'y')
                                          {
-
+                                             System.out.println();
+                                            System.out.println("Order added!");
                                             itemOrder.add((temp.get(menuChoice)));
                                             qtyOrder.add(qty);
                                             subtotal.add(qty *temp.get(menuChoice).getPrice());
 
                                         }
+                                        else
+                                        {
+                                            System.out.println("Order Cancelled.");
+                                        }
 
-                                        System.out.println("More Order ? <Y/N>");
+                                        System.out.println();
+                                        System.out.println("More Order from this restaurant ? <Y/N>");
                                         contOrder = scanner.next().charAt(0);
                                         break;
                                 }
@@ -159,48 +173,61 @@ public class TestProgram {
                     
                     
                     Double total = 0.0;
+                    if(itemOrder.isEmpty())
+                    {
+                        valid =0;
+                    }
 
-                    if (valid != 0) {
+                    if (valid != 0 ) {
                         System.out.println();
-                        System.out.println("Food            Price(RM)   Qty   Subtotal(RM)");
+                        System.out.println("Num Food Name\t\t\tPrice(RM)\tQty\tSubtotal(RM)");
                         for (int i = 0; i < itemOrder.size(); i++) {
 
-                            System.out.printf("%s   %d  %.2f", itemOrder.get(i).itemDetail(), qtyOrder.get(i), subtotal.get(i));
-                            System.out.println();
+                            System.out.printf("%d . %s\t\t%.2f\t\t%d\t%.2f",i+1, itemOrder.get(i).getFoodName(),itemOrder.get(i).getFoodPrice(), qtyOrder.get(i), subtotal.get(i));
                             System.out.println();
                             total += subtotal.get(i);
                         }
-                        System.out.println();
+                        //System.out.println();
 
                         System.out.println("-----------------------------------------------");
                         System.out.printf("Total = RM %.2f", total);
                         System.out.println();
+                        System.out.println();
                         System.out.println("Confirm Order? <Y/N>");
                         payment = scanner.next().charAt(0);
                         if (payment == 'Y' || payment == 'y') {
-                           // for (int i = 0; i<itemOrder.size();i++)
-                        
+                           // for (int i = 0; i<itemOrder.size();i++)                
                             Order orderNew = new Order(user,restaurantList.get(selection),itemOrder,qtyOrder,total);
                             order.add(orderNew);
+                            System.out.println();
                             System.out.println("Order Complete !");
                             System.out.println(order.get(order.size()-1).toString());
                             
-                            
-                            
+                        }
+                        else
+                        {
+                            System.out.println();
+                            System.out.println("Order Cancelled.");
                         }
                     }
                     break;
                 }
 
                 default:
+                    System.out.println();
+                    System.out.println("Thanks for using :)");
                     System.exit(0);
 
             }
-
-            System.out.println("More Order? <Y/N>");
+            System.out.println();
+            System.out.println("Do you want to make new order? <Y/N>");
             newOrder = scanner.next().charAt(0);
 
         } while (newOrder == 'Y' || newOrder == 'y');
+        
+        System.out.println();
+        System.out.println("Thanks for using :)");
+        
     }
     
     public static int choice(int min, int max)  {

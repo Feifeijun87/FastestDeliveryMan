@@ -26,6 +26,18 @@ public class Item {
         count++;
     }
     
+    public String getFoodName() {
+        return foodName;
+    }
+
+    public Double getFoodPrice() {
+        return foodPrice;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+    
     public String toString()
     {
         return (foodName + "            " + "RM " + foodPrice + "       "+desc);
