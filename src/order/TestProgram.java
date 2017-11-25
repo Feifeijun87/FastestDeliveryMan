@@ -218,7 +218,7 @@ public class TestProgram {
                             Order orderNew = new Order(user,restaurantList.get(selection),itemOrder,qtyOrder,total);
                             order.add(orderNew);
                             System.out.println();
-                            System.out.println("Order Complete !");
+                            System.out.println("Order Successful !");
                             System.out.printf("Your total payment is : RM %.2f \n", total);
                             System.out.println("Please prepare enough amount when your delivery man arrive ! :) ");
                             System.out.println();
