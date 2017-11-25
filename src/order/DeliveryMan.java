@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package order;
 /**
  *
  * @author hsuhong1210
@@ -11,15 +12,19 @@ public class DeliveryMan {
 
   //  private static int dmIDC = 1000;
  //   private int dmID;
-    private String dmName;
+    private int id;
+    private String name;
+    private String ic;
     private String gender;
     private String address;
     private String contactNo;
     private String email;
     private String status;
 
-    public DeliveryMan(String name, String gender, String address, String contactNo, String email, String status) {
-        this.dmName = dmName;
+    public DeliveryMan(int id, String name, String ic, String gender,  String address, String contactNo, String email, String status) {
+        this.id = id;
+        this.name = name;
+        this.ic = ic;
         this.gender = gender;
         this.address = address;
         this.contactNo = contactNo;
@@ -28,20 +33,28 @@ public class DeliveryMan {
   //      this.dmID = dmIDC++;
     }
 
-   // public int getDmID() {
-   //     return dmID;
-   // }
-
-   // public void setDmID(int dmID) {
-   //     this.dmID = dmID;
-   // }
-
-    public String getDmName() {
-        return dmName;
+    public int getId() {
+        return id;
     }
 
-    public void setDmName(String dmName) {
-        this.dmName = dmName;
+    public void setId(int id) {
+       this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    
+      public String getIC() {
+        return ic;
+    }
+
+    public void setIc(String ic) {
+        this.ic = ic;
     }
 
     public String getGender() {
@@ -51,6 +64,7 @@ public class DeliveryMan {
     public void setGender(String gender) {
         this.gender = gender;
     }
+     
 
     public String getAddress() {
         return address;
@@ -95,7 +109,7 @@ public class DeliveryMan {
     @Override
     public String toString() {
         
-        return String.format("dmName = %-20s\n gender = %-20s\n address = %-20s\n contactNo = %-20s\n email = %-20s\n status = %-20s\n ", dmName, gender, address, contactNo, email, status);
+        return String.format("| %-5d | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s | ", id, name, ic, gender, address, contactNo, email, status);
     }
 
 }
