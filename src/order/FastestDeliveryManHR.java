@@ -45,30 +45,31 @@ public class FastestDeliveryManHR {
 
         Boolean verify;
 
+        //insert data to delivery man object
         DeliveryMan dm = new DeliveryMan(1, "Loh Hsu Hong", "951210-35-5064", "Female", "12 Jalan 123", "017-4872097", "hhloh8332@gmail.com", "Hired");
         deliveryManList.add(dm);
-        
+
         DeliveryMan dm1 = new DeliveryMan(2, "Ong Ying Qing", "750531-07-5596", "Female", "15 Jalan ABC", "019-1234555", "oyq531@gmail.com", "Resigned");
         deliveryManList.add(dm1);
-        
+
         DeliveryMan dm2 = new DeliveryMan(3, "Yeoh Kok Xuan", "651006-07-1213", "Male", "9 Jalan K", "012-1234567", "ykxxxx@gmail.com", "Retired");
         deliveryManList.add(dm2);
-        
+
         DeliveryMan dm3 = new DeliveryMan(4, "Ooi Wei Sheng", "850416-03-5555", "Male", "2 Jalan 222", "014-3366333", "owshahaha@gmail.com", "Hired");
         deliveryManList.add(dm3);
-        
+
+         //insert data to delivery detail object
         DeliveryDetail dd = new DeliveryDetail(1, "Pending", "88 Jalan Halo", dm3);
         deliveryDetailList.add(dd);
-        
+
         DeliveryDetail dd1 = new DeliveryDetail(2, "Delivered", "88 Jalan Wayy", dm2);
         deliveryDetailList.add(dd1);
-        
+
         DeliveryDetail dd2 = new DeliveryDetail(3, "Pending", "88 Jalan Happy", dm);
         deliveryDetailList.add(dd2);
-        
+
         DeliveryDetail dd3 = new DeliveryDetail(4, "Pending", "88 Jalan Ohwei", dm1);
         deliveryDetailList.add(dd3);
-        
 
         do {
             try {
@@ -116,23 +117,8 @@ public class FastestDeliveryManHR {
                     System.out.println(" ");
             }
 
-        } while (choice != 5); //if choice = 5, will exit the program, else continue loop
+        } while (choice != 6); //if choice = 5, will exit the program, else continue loop
     }
-
-//    public Boolean isDigit(int choice) {
-//        Boolean verify;
-//
-//        if (!Character.isDigit(choice)) {
-//            verify = false;
-//            System.out.println("Wrong input, please try again!");
-//        } else {
-//            verify = true;
-//            System.out.println("Wrong input, please try again!dsasdas");
-//        }
-//
-//        return verify;
-//    }
-    // TODO code application logic here
     public void addStaff() {
 
         Scanner sc = new Scanner(System.in);
@@ -414,6 +400,7 @@ public class FastestDeliveryManHR {
         return verify;
     }
 
+    // to view the delivery man
     public void viewStaff() {
         if (tmp == 3) {
 
@@ -425,50 +412,55 @@ public class FastestDeliveryManHR {
         }
 
         System.out.println("");
-        for (int i = 0; i <= 120; i++) {
+        for (int i = 0; i <= 136; i++) {
             System.out.print("-");
         }
 
         System.out.println("");
-        System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-        System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
+        System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+        System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
 
         //retrive data from arraylist
         if (deliveryManList.isEmpty()) {
             System.out.println("No record inside.");
         } else {
             for (int i = 0; i < deliveryManList.size(); ++i) {
-                //  System.out.print(String.format("| %-5s", (i + 1) + "."));
                 System.out.println(deliveryManList.get(i));
             }
         }
 
-        for (int i = 0; i <= 120; i++) {
+        for (int i = 0; i <= 136; i++) {
             System.out.print("-");
         }
         if (tmp == 3) {
-
+            
         } else {
             Scanner sc = new Scanner(System.in);
-
-            System.out.print("\nDo you want to update staff details?  (Y = Yes, N = No): ");
-            char valid = sc.next().charAt(0);
-            switch (valid) {
-                case 'Y':
-                case 'y':
-                    updateStaff();
-                    break;
-                case 'N':
-                case 'n':
-                    System.out.println("");
-                    System.out.println("");
-                    System.out.println("Thank You. Back to HR Staff Main Menu...");
-                    System.out.println("");
-                    break;
-                default:
-                    System.out.println(" ");
-                    System.out.println("Wrong input, please try again!");
-            }
+            char valid;
+            int verify = 0;
+            do {
+                System.out.print("\nDo you want to update staff details?  (Y = Yes, N = No): ");
+                valid = sc.next().charAt(0);
+                switch (valid) {
+                    case 'Y':
+                    case 'y':
+                        verify = 1;
+                        updateStaff();
+                        break;
+                    case 'N':
+                    case 'n':
+                        verify = 1;
+                        System.out.println("");
+                        System.out.println("");
+                        System.out.println("Thank You. Back to HR Staff Main Menu...");
+                        System.out.println("");
+                        break;
+                    default:
+                        verify = 0;
+                        System.out.println(" ");
+                        System.out.println("Wrong input, please try again!");
+                }
+            } while (verify == 0); //if verify != 0, will exit the loop, else continue loop
         }
 
     }
@@ -486,351 +478,365 @@ public class FastestDeliveryManHR {
         Scanner sc = new Scanner(System.in);
         int choice = 0, choice1 = 0;
         String name = "", ic = "", gender = "", address = "", contactNo = "", email = "", status = "";
-        Boolean verify = false, verifyEmpty = false, verifyExist = false, verifyChar = false;
+        Boolean verify = false, verifyEmpty = false, verifyExist = false, verifyChar = false, verifyChoice = false;
         String nameA, genderA, statusA, addressA;
 
         do {
             try {
-                //allow the first char of input of each word to uppercase
                 System.out.println(" ");
                 System.out.print("Please select a staff to update: ");
                 choice = sc.nextInt();
                 verifyChar = false;
+                verifyChoice = false;
             } catch (Exception error) {
                 verifyChar = true;
+                verifyChoice = false;
                 sc.next();
             }
 
-            for (int i = 0; i < deliveryManList.size(); i++) {
-                if (choice == deliveryManList.get(i).getId()) {
-                    do {
-                        try {
-                            System.out.println(" ");
-                            System.out.println("---------------------------------------------------");
-                            System.out.println("Please choose which part that you want to update: ");
-                            System.out.println("1. Name");
-                            System.out.println("2. IC");
-                            System.out.println("3. Gender");
-                            System.out.println("4. Address");
-                            System.out.println("5. Contact No.");
-                            System.out.println("6. Email");
-                            System.out.println("7. Status");
-                            System.out.println("8. Back To HR Staff Main Menu");
-                            System.out.println("---------------------------------------------------");
-                            System.out.print("Enter your choice : ");
-                            choice1 = sc.nextInt();
-                            sc.nextLine();
-                        } catch (Exception error) {
-
-                            sc.next();
-                        }
-                        switch (choice1) {
-                            case 1:
-                                do {
-                                    System.out.flush();
-                                    System.out.println(" ");
-                                    System.out.print("Please enter new name: ");
-                                    name = sc.nextLine();
-
-                                    verifyEmpty = verifyEmpty(name);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("Name cannot be empty, please try again.");
-                                        System.out.println(" ");
-                                    }
-                                } while (verifyEmpty == false); // if input is empty, it will loop until input is not empty
-
-                                nameA = toUpperCase(name);
-                                deliveryManList.get(i).setName(nameA);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 2:
-                                do {
-                                    do {
-                                        System.out.print("Please enter new IC: ");
-                                        ic = sc.nextLine();
-
-                                        verify = verifyIC(ic);
-                                        verifyEmpty = verifyEmpty(ic);
-
-                                        if (verifyEmpty == false) {
-                                            System.out.println("IC cannot be empty, please try again.");
-                                            System.out.println(" ");
-
-                                        } else if (verify == false) {
-                                            System.out.println("IC must in the format of xxxx-xx-xxxx, please try again.");
-                                            System.out.println(" ");
-                                        }
-                                    } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
-
-                                    verifyExist = verifyICExist(ic);
-
-                                    if (verifyExist == false) {
-                                        System.out.println("Delivery Man already exist, please try again.");
-                                        System.out.println(" ");
-                                    }
-                                } while (verifyExist == false); // if ic is exist, it will loop until the input is not duplicate
-                                deliveryManList.get(i).setIc(ic);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 3:
-                                do {
-                                    System.out.print("Please enter new Gender[Male/Female]: ");
-                                    gender = sc.nextLine();
-
-                                    verify = verifyGender(gender);
-                                    verifyEmpty = verifyEmpty(gender);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("Gender cannot be empty, please try again.");
-                                        System.out.println(" ");
-
-                                    } else if (verify == false) {
-                                        System.out.println("Invalid Input, please try again.");
-                                        System.out.println(" ");
-                                    }
-
-                                } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
-                                genderA = toUpperCase(gender);
-
-                                deliveryManList.get(i).setGender(genderA);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 4:
-                                do {
-                                    System.out.print("Please enter new Address: ");
-                                    address = sc.nextLine();
-                                    verifyEmpty = verifyEmpty(address);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("Address cannot be empty, please try again.");
-                                        System.out.println(" ");
-                                    }
-                                } while (verifyEmpty == false); // if input is empty, it will loop until the input is not empty
-                                addressA = toUpperCase(address);
-
-                                deliveryManList.get(i).setAddress(addressA);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 5:
-                                do {
-                                    System.out.print("Please enter new Contact No.: ");
-                                    contactNo = sc.nextLine();
-
-                                    verify = verifyContactNo(contactNo);
-                                    verifyEmpty = verifyEmpty(contactNo);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("ContactNo cannot be empty, please try again.");
-                                        System.out.println(" ");
-
-                                    } else if (verify == false) {
-                                        System.out.println("Contact No. must in the format of xxx-xxxxxxx, please try again.");
-                                        System.out.println(" ");
-                                    }
-
-                                } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
-
-                                deliveryManList.get(i).setContactNo(contactNo);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 6:
-                                do {
-                                    System.out.print("Please enter new Email: ");
-                                    email = sc.nextLine();
-
-                                    verify = verifyEmailAddress(email);
-                                    verifyEmpty = verifyEmpty(email);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("Email cannot be empty, please try again.");
-                                        System.out.println(" ");
-
-                                    } else if (verify == false) {
-                                        System.out.println("Email must in the format of example@gmail.com, please try again.");
-                                        System.out.println(" ");
-                                    }
-
-                                } while (verify == false || verify == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
-                                deliveryManList.get(i).setEmail(email);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 7:
-                                do {
-                                    System.out.print("Please enter new Status[Hired/Resigned/Retired]: ");
-                                    status = sc.nextLine();
-
-                                    verify = verifyStatus(status);
-                                    verifyEmpty = verifyEmpty(status);
-
-                                    if (verifyEmpty == false) {
-                                        System.out.println("Status cannot be empty, please try again.");
-                                        System.out.println(" ");
-
-                                    } else if (verify == false) {
-                                        System.out.println("Invalid Input, please try again.");
-                                        System.out.println(" ");
-                                    }
-
-                                } while (verify == false || verifyEmpty == false);
-                                statusA = toUpperCase(status);
-
-                                deliveryManList.get(i).setStatus(statusA);
-
-                                System.out.println(" ");
-                                System.out.println("----------------");
-                                System.out.println("Updated Profile");
-                                System.out.println("----------------");
-
-                                for (int j = 0; j <= 120; j++) {
-                                    System.out.print("-");
-                                }
-
-                                System.out.println("");
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
-                                System.out.println(String.format("| %-5s | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s |", "-----", "---------------", "---------------", "------", "---------------", "---------------", "---------------", "----------"));
-                                System.out.println(deliveryManList.get(i));
-
-                                for (int k = 0; k <= 120; k++) {
-                                    System.out.print("-");
-                                }
-                                System.out.println(" ");
-                                break;
-                            case 8:
-                                System.out.println(" ");
-                                System.out.println("Thank You. Back to HR Staff Main Menu...");
-                                System.out.println(" ");
-                                break;
-                            default:
-                                System.out.println(" ");
-                                System.out.println("Wrong input, please try again!");
-                        }
-                    } while (choice1 != 8);
-                    break;
-                } else {
-                    System.out.println(" ");
-                    System.out.println("Wrong input, please try again!");
-                    verifyChar = true;
-                }
+            if (choice <= (deliveryManList.size()) && verifyChar == false && choice > 0) {
+                verifyChoice = true;
+                verifyChar = true;
+            } else {
+                verifyChoice = false;
+                verifyChar = true;
+                System.out.println(" ");
+                System.out.print("Invalid input. Please try again.");
+                System.out.println(" ");
             }
-        } while (verifyChar == true);
+        } while (verifyChar == false || verifyChoice == false); //if verifyChar = true or verifyChoice = true, will exit the loop, else continue loop
+
+    //loop the data from delivery man arrayList
+        for (int i = 0; i < deliveryManList.size(); i++) {
+            if (choice == deliveryManList.get(i).getId()) { //if choice match with the id that inside arrayList, will continue
+                do {
+                    try {
+                        System.out.println(" ");
+                        System.out.println("---------------------------------------------------");
+                        System.out.println("Please choose which part that you want to update: ");
+                        System.out.println("1. Name");
+                        System.out.println("2. IC");
+                        System.out.println("3. Gender");
+                        System.out.println("4. Address");
+                        System.out.println("5. Contact No.");
+                        System.out.println("6. Email");
+                        System.out.println("7. Status");
+                        System.out.println("8. Back To HR Staff Main Menu");
+                        System.out.println("---------------------------------------------------");
+                        System.out.print("Enter your choice : ");
+                        choice1 = sc.nextInt();
+                        sc.nextLine();
+                    } catch (Exception error) {
+
+                        sc.next();
+                    }
+                    switch (choice1) { 
+                        case 1:
+                            do { 
+                                System.out.flush();
+                                System.out.println(" ");
+                                System.out.print("Please enter new name: ");
+                                name = sc.nextLine();
+
+                                verifyEmpty = verifyEmpty(name);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("Name cannot be empty, please try again.");
+                                    System.out.println(" ");
+                                }
+                            } while (verifyEmpty == false); // if input is empty, it will loop until input is not empty
+
+                            nameA = toUpperCase(name);
+                            deliveryManList.get(i).setName(nameA);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 2:
+                            do {
+                                do {
+                                    System.out.print("Please enter new IC: ");
+                                    ic = sc.nextLine();
+
+                                    verify = verifyIC(ic);
+                                    verifyEmpty = verifyEmpty(ic);
+
+                                    if (verifyEmpty == false) {
+                                        System.out.println("IC cannot be empty, please try again.");
+                                        System.out.println(" ");
+
+                                    } else if (verify == false) {
+                                        System.out.println("IC must in the format of xxxx-xx-xxxx, please try again.");
+                                        System.out.println(" ");
+                                    }
+                                } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
+
+                                verifyExist = verifyICExist(ic);
+
+                                if (verifyExist == false) {
+                                    System.out.println("Delivery Man already exist, please try again.");
+                                    System.out.println(" ");
+                                }
+                            } while (verifyExist == false); // if ic is exist, it will loop until the input is not duplicate
+                            deliveryManList.get(i).setIc(ic);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 3:
+                            do {
+                                System.out.print("Please enter new Gender[Male/Female]: ");
+                                gender = sc.nextLine();
+
+                                verify = verifyGender(gender);
+                                verifyEmpty = verifyEmpty(gender);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("Gender cannot be empty, please try again.");
+                                    System.out.println(" ");
+
+                                } else if (verify == false) {
+                                    System.out.println("Invalid Input, please try again.");
+                                    System.out.println(" ");
+                                }
+
+                            } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
+                            genderA = toUpperCase(gender);
+
+                            deliveryManList.get(i).setGender(genderA);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 4:
+                            do {
+                                System.out.print("Please enter new Address: ");
+                                address = sc.nextLine();
+                                verifyEmpty = verifyEmpty(address);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("Address cannot be empty, please try again.");
+                                    System.out.println(" ");
+                                }
+                            } while (verifyEmpty == false); // if input is empty, it will loop until the input is not empty
+                            addressA = toUpperCase(address);
+
+                            deliveryManList.get(i).setAddress(addressA);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 5:
+                            do {
+                                System.out.print("Please enter new Contact No.: ");
+                                contactNo = sc.nextLine();
+
+                                verify = verifyContactNo(contactNo);
+                                verifyEmpty = verifyEmpty(contactNo);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("ContactNo cannot be empty, please try again.");
+                                    System.out.println(" ");
+
+                                } else if (verify == false) {
+                                    System.out.println("Contact No. must in the format of xxx-xxxxxxx, please try again.");
+                                    System.out.println(" ");
+                                }
+
+                            } while (verify == false || verifyEmpty == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
+
+                            deliveryManList.get(i).setContactNo(contactNo);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 6:
+                            do {
+                                System.out.print("Please enter new Email: ");
+                                email = sc.nextLine();
+
+                                verify = verifyEmailAddress(email);
+                                verifyEmpty = verifyEmpty(email);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("Email cannot be empty, please try again.");
+                                    System.out.println(" ");
+
+                                } else if (verify == false) {
+                                    System.out.println("Email must in the format of example@gmail.com, please try again.");
+                                    System.out.println(" ");
+                                }
+
+                            } while (verify == false || verify == false); // if input is empty/wrong format, it will loop until the input is not empty/correct format
+                            deliveryManList.get(i).setEmail(email);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 7:
+                            do {
+                                System.out.print("Please enter new Status[Hired/Resigned/Retired]: ");
+                                status = sc.nextLine();
+
+                                verify = verifyStatus(status);
+                                verifyEmpty = verifyEmpty(status);
+
+                                if (verifyEmpty == false) {
+                                    System.out.println("Status cannot be empty, please try again.");
+                                    System.out.println(" ");
+
+                                } else if (verify == false) {
+                                    System.out.println("Invalid Input, please try again.");
+                                    System.out.println(" ");
+                                }
+
+                            } while (verify == false || verifyEmpty == false);
+                            statusA = toUpperCase(status);
+
+                            deliveryManList.get(i).setStatus(statusA);
+
+                            System.out.println(" ");
+                            System.out.println("----------------");
+                            System.out.println("Updated Profile");
+                            System.out.println("----------------");
+
+                            for (int j = 0; j <= 136; j++) {
+                                System.out.print("-");
+                            }
+
+                            System.out.println("");
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "No.", "Name", "IC", "Gender", "Address", "Contact No.", "Email", "Status"));
+                            System.out.println(String.format("| %-5s | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s |", "-----", "--------------------", "---------------", "------", "--------------------", "---------------", "--------------------", "----------"));
+                            System.out.println(deliveryManList.get(i));
+
+                            for (int k = 0; k <= 136; k++) {
+                                System.out.print("-");
+                            }
+                            System.out.println(" ");
+                            break;
+                        case 8:
+                            System.out.println(" ");
+                            System.out.println("Thank You. Back to HR Staff Main Menu...");
+                            System.out.println(" ");
+                            break;
+                        default:
+                            System.out.println(" ");
+                            System.out.println("Wrong input, please try again!");
+                    }
+                } while (choice1 != 8);
+                break;
+            } //else {
+//                    System.out.println(" ");
+//                    System.out.println("Wrong input, please try again!");
+//                    verifyChar = true;
+        }
     }
+    // } while (verifyChar == true);
+    //  }
 
     public void pendingDelivery() {
         System.out.println(" ");
         System.out.println("------------------------");
         System.out.println("List Pending Deliveries");
         System.out.println("------------------------");
-        
-         System.out.println("");
+
+        System.out.println("");
         for (int i = 0; i <= 59; i++) {
             System.out.print("-");
         }
@@ -838,23 +844,23 @@ public class FastestDeliveryManHR {
         System.out.println("");
         System.out.println(String.format("| %-5s | %-10s | %-16s | %-15s | ", "No.", "Status", "Delivery Address", "Delivery Man"));
         System.out.println(String.format("| %-5s | %-10s | %-16s | %-15s | ", "-----", "----------", "----------------", "---------------"));
-        
+
         //retrive data from arraylist
         if (deliveryDetailList.isEmpty()) {
             System.out.println("No record inside.");
         } else {
             for (int i = 0; i < deliveryDetailList.size(); ++i) {
-                //  System.out.print(String.format("| %-5s", (i + 1) + "."));
-                if(deliveryDetailList.get(i).getStatus() == "Pending")
-                System.out.println(String.format("| %-5d | %-10s | %-16s | %-15s | ", deliveryDetailList.get(i).getId(), deliveryDetailList.get(i).getStatus(), deliveryDetailList.get(i).getCustAddress(), deliveryDetailList.get(i).getDeliveryMan().getName()));
+                if (deliveryDetailList.get(i).getStatus() == "Pending") {
+                    System.out.println(String.format("| %-5d | %-10s | %-16s | %-15s | ", deliveryDetailList.get(i).getId(), deliveryDetailList.get(i).getStatus(), deliveryDetailList.get(i).getCustAddress(), deliveryDetailList.get(i).getDeliveryMan().getName()));
+                }
             }
         }
-       for (int i = 0; i <= 59; i++) {
+        for (int i = 0; i <= 59; i++) {
             System.out.print("-");
         }
-       
-       System.out.println(" ");
-       System.out.println(" ");
+
+        System.out.println(" ");
+        System.out.println(" ");
 
     }
 }
