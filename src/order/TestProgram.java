@@ -58,7 +58,7 @@ public class TestProgram {
     public static void showRestaurantList(List<Restaurant> restaurantList) {
         Scanner scanner = new Scanner(System.in);
         Integer selection;
-
+        System.out.println();
         System.out.print("Please select a restaurant : *press 0 to exit* ");
         System.out.println();
         for (int i = 0; i < restaurantList.size(); i++) {
@@ -76,58 +76,67 @@ public class TestProgram {
         Integer qty = 0;
         char confirm,payment;
         char contOrder = 'n';
+        char proceedToConfirm = 'n';
         
         int valid;
         Integer selection;
+        int back = 0;
+        
         
         List<Item> itemOrder = new ArrayList<>();
         List<Integer> qtyOrder = new ArrayList<>();
-        List<Double> subtotal = new ArrayList<>(); 
+        List<Double> subtotal = new ArrayList<>();
+        List<Item> temp = new ArrayList<>();
 
-        
         do {
 
             itemOrder.clear();
             qtyOrder.clear();
-            
+            subtotal.clear();
             showRestaurantList(restaurantList);
-            selection = choice(0, 5);
+            selection = choice(0, restaurantList.size());
 
             switch (selection) {
-                case 1:
-                case 2:
-                case 3:
-                case 4:
-                case 5:
-                {
+                
+                case 0:
+                    System.out.println();
+                    System.out.println("Thanks for using :)");
+                    System.exit(0);
+                    
+                default: {
 
-                    selection = selection -1;
+                    selection = selection - 1;
                     System.out.println();
                     System.out.println(restaurantList.get(selection).getRestaurantName());
                     System.out.println("============");
                     System.out.println();
                     System.out.println("Please select menu : *press 0 to back*");
-                    System.out.println();
+                    //System.out.println();
 
-                    List<Item> temp = new ArrayList<>();
                     temp = restaurantList.get(selection).getMenu();
+                    
 
-                    do {
-
-                        System.out.printf("Num Food Name\t\t\tPrice(RM)\tDescription");
-                        System.out.println();
-                        for (int i = 0; i < restaurantList.get(selection).getMenu().size(); i++) {
-                            System.out.printf("%d . %s\t\tRM%.2f\t\t%s",i + 1,temp.get(i).getFoodName(),temp.get(i).getFoodPrice(),temp.get(i).getDesc());
+                    order: do {
+                        do {
                             System.out.println();
+                            System.out.printf("Num Food Name\t\t\tPrice(RM)\tDescription");
+                            System.out.println();
+                            for (int i = 0; i < restaurantList.get(selection).getMenu().size(); i++) {
+                                System.out.printf("%d . %s\t\tRM%.2f\t\t%s", i + 1, temp.get(i).getFoodName(), temp.get(i).getFoodPrice(), temp.get(i).getDesc());
+                                System.out.println();
                         }
                         menuChoice = choice(0, restaurantList.get(selection).getMenu().size());
 
                         switch (menuChoice) {
                             case 0:
                                 valid = 0;
-                                break;
+                                proceedToConfirm='n';
+                                back =1;
+                                newOrder = 'y';
+                                break order;
 
                             default:
+                                back=0;
                                 valid =1;
                                 menuChoice -=1;
                                 System.out.println();
@@ -169,8 +178,17 @@ public class TestProgram {
 
                         }
 
-                    } while(contOrder == 'Y' || contOrder == 'y');
-                    
+                        } while (contOrder == 'Y' || contOrder == 'y');
+                            
+                        if(valid !=0)
+                        {
+                        System.out.println();
+                        System.out.println("Proceed to Order Confirmation? <Y/N>");
+                        proceedToConfirm = scanner.next().charAt(0);
+                        }
+                        
+                    } while (proceedToConfirm != 'Y' && proceedToConfirm != 'y');
+
                     
                     Double total = 0.0;
                     if(itemOrder.isEmpty())
@@ -201,7 +219,10 @@ public class TestProgram {
                             order.add(orderNew);
                             System.out.println();
                             System.out.println("Order Complete !");
-                            System.out.println(order.get(order.size()-1).toString());
+                            System.out.printf("Your total payment is : RM %.2f \n", total);
+                            System.out.println("Please prepare enough amount when your delivery man arrive ! :) ");
+                            System.out.println();
+                            //System.out.println(order.get(order.size()-1).toString());
                             
                         }
                         else
@@ -212,16 +233,14 @@ public class TestProgram {
                     }
                     break;
                 }
-
-                default:
-                    System.out.println();
-                    System.out.println("Thanks for using :)");
-                    System.exit(0);
-
+ 
             }
+            if(back ==0)
+            {
             System.out.println();
             System.out.println("Do you want to make new order? <Y/N>");
             newOrder = scanner.next().charAt(0);
+            }
 
         } while (newOrder == 'Y' || newOrder == 'y');
         
