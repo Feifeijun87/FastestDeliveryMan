@@ -109,7 +109,7 @@ public class DeliveryMan {
     @Override
     public String toString() {
         
-        return String.format("| %-5d | %-15s | %-15s | %-6s | %-15s | %-15s | %-15s | %-10s | ", id, name, ic, gender, address, contactNo, email, status);
+        return String.format("| %-5d | %-20s | %-15s | %-6s | %-20s | %-15s | %-20s | %-10s | ", id, name, ic, gender, address, contactNo, email, status);
     }
 
 }
