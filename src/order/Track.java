@@ -16,9 +16,10 @@ public class Track {
 
     /**
      *
+     * @param obj
      * @param user
      */
-     public static void statusTrack(DeliveryMen[] user){
+    public static void statusTrack(ArrayList<DeliveryMen> obj){
       int count =0;
   
     do{
@@ -29,12 +30,12 @@ public class Track {
         
         String wID = input.nextLine();
         
-        for (int i=0; i<user.length; i++)
+        for (int i=0; i<obj.size(); i++)
         {
-           if(user[i].id.equals(wID))
+           if(obj.get(i).id.equals(wID))
            {
                count =1;
-               System.out.println(user[i].status);  
+               System.out.println(obj.get(i).status);  
            }
            else if (wID.equals(""))
            {
@@ -71,7 +72,7 @@ public class Track {
        {
            System.out.println(obj.get(i).name +" "+obj.get(i).id +" " + obj.get(i).status);
        }
-     
+      statusTrack(obj);
      
     }
     
