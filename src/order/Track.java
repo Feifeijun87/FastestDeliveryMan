@@ -5,6 +5,7 @@
  */
 package order;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,7 @@ public class Track {
      *
      * @param user
      */
-    public static void statusTrack(DeliveryMen[] user){
+     public static void statusTrack(DeliveryMen[] user){
       int count =0;
   
     do{
@@ -56,12 +57,22 @@ public class Track {
     }
     
     public static void main(String[] args) {
-      DeliveryMen[] user = new DeliveryMen[4];
-      user[0] = new DeliveryMen("Hahaha", "D001", "Delivering");
-      user[1] = new DeliveryMen("Bobo", "D002", "Available");
-      user[2] = new DeliveryMen("Keke", "D003", "Break");
-      user[3] = new DeliveryMen("XDD", "D004", "Delivering");
-      statusTrack(user);
+      DeliveryMen D1 = new DeliveryMen ("Hahaha", "D001", "Delivering");
+      DeliveryMen D2 = new DeliveryMen ("Bobo", "D002", "Available");
+     DeliveryMen D3 = new DeliveryMen ("Keke", "D003", "Break");
+     DeliveryMen D4 = new DeliveryMen ("XDD", "D004", "Delivering");
+      ArrayList<DeliveryMen> obj = new ArrayList<DeliveryMen>();
+      obj.add(D1);
+      obj.add(D2);
+      obj.add(D3);
+      obj.add(D4);
+       System.out.println("Track Delivery Man Status:");
+       for(int i = 0; i < obj.size(); i++)
+       {
+           System.out.println(obj.get(i).name +" "+obj.get(i).id +" " + obj.get(i).status);
+       }
+     
+     
     }
     
 }
