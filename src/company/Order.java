@@ -112,7 +112,7 @@ public class Order {
  
  }
      str+="------------------------------------------------\n";
-     str+=String.format("%-41s RM%-5.2f\n","Total Price",getTotal());
+     str+=String.format("%-41s RM%5.2f\n","Total Price",getTotal());
       return str;
     }
     

@@ -17,7 +17,7 @@ public class OrderDetails {
     public OrderDetails(Meal meal,int quantity) {
         this.meal = meal;
         this.quantity=quantity;
-         
+        calculatePrice();
     }
 
     public Meal getMeal() {
@@ -45,7 +45,7 @@ public class OrderDetails {
     public String toString() {
         String str="";
                
-              str  += String.format("%-20s%-10dRM%-10.2fRM%-5.2f\n",((Meal)meal).getName(),getQuantity(),((Meal)meal).getUnitPrice(),getPrice());
+              str  += String.format("%-20s%-10dRM%-10.2fRM%5.2f\n",((Meal)meal).getName(),getQuantity(),((Meal)meal).getUnitPrice(),getPrice());
               return str;
     }
     

@@ -40,6 +40,10 @@ public class Restaurant {
         return menu;
     }
 
+    public String getRestAddress() {
+        return restAddress;
+    }
+
     
     
     

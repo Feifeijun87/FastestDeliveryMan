@@ -76,7 +76,7 @@ do{
                System.out.println(i+1+". "+((Schedule)schedule[i]).getId());
                
         }
-           System.out.print("Delete: ");
+           System.out.print("Cancel:: ");
            deleteNum=input.nextInt();
            schedule[deleteNum]=null;
             System.out.println("Successful");
@@ -85,6 +85,8 @@ do{
         }
         else if (choice==3){
             int count=0;
+            if (schedule.length==0){
+                System.out.println("no Schedule");}
         for(int i=0;i<schedule.length;i++){
             if(schedule[i]!=null){
             System.out.println(count+1+". "+((Schedule)schedule[i]).getId());
@@ -104,13 +106,33 @@ do{
       choice=input.nextInt();
   return choice;
   }
+      public static int checkDigit(){
+        Scanner scanner = new Scanner(System.in);
+        int choice = 0;
+        boolean valid = true;
+        
+        do{
+            try{
+                System.out.print("\nEnter your choice > ");
+                choice = scanner.nextInt();
+                
+                valid = false;
+            }catch(Exception error){
+                System.out.println("\nWrong Input! Please enter again.");
+                valid = true;
+                scanner.nextLine();
+            }
+        }while(valid);
+        
+        return choice;
+    }
         public static int menu(){
         int choice;
         Scanner input=new Scanner(System.in);
         System.out.println("1. Add schedule");
-        System.out.println("2. Delete schedule");
+        System.out.println("2. Cancel schedule");
         System.out.println("3. List schedule");
-        choice=input.nextInt();
+        choice=checkDigit();
         return choice;
         
         }
@@ -119,7 +141,7 @@ do{
         Scanner input= new Scanner(System.in);
        
             System.out.print("Quantity: ");
-            quantity=input.nextInt();
+            quantity=checkDigit();
             return quantity;
         }
         
@@ -138,7 +160,7 @@ do{
             } 
             }
             System.out.print("Choice: ");
-            choice=input.nextInt();
+            choice=checkDigit();
             
               for (int i=0;i<meal.length;i++){
                  
@@ -164,7 +186,7 @@ do{
                 System.out.println((i+1)+". "+restaurant[i].getName());
             }
             System.out.print("Choice: ");
-            choice=input.nextInt();
+            choice=checkDigit();
             restaurantName=restaurant[choice-1].getName();     
         
         
@@ -177,7 +199,7 @@ do{
             int choice;
         System.out.println("Please select time (1-AM , 2-PM)");
         System.out.print("Choice: ");
-        choice=input.nextInt();
+        choice=checkDigit();
         System.out.println("Please enter the time");
         input.nextLine();
         System.out.print("Time: ");
@@ -193,29 +215,29 @@ do{
     Scanner input=new Scanner(System.in);
     int day=0;
     String str="";
-        System.out.println("Please select the day you want to order (1=Monday,7=Sunday)");
+        System.out.println("Please select the day you want to order (1=Sunday,7=Saturday)");
         System.out.print("Day: ");
-        day=input.nextInt();
+        day=checkDigit();
         switch (day) {
-            case 1:
+            case 2:
                 str="Monday";
                 break;
-            case 2:
+            case 3:
                 str="Tuesday";
                 break;
-            case 7:
+            case 1:
                 str="Sunday";
                 break;
-            case 3:
+            case 4:
                 str="Wednesday";
                 break;
-            case 4:
+            case 5:
                 str="Thursday";
                 break;
-            case 5:
+            case 6:
                 str="Friday";
                 break;
-            case 6:
+            case 7:
                 str="Saturday";
                 break;
             default:

@@ -43,5 +43,9 @@ public class User {
     {
         return contactNum;
     }
+
+    public String getAddress() {
+        return address;
+    }
     
 }
