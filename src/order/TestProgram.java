@@ -108,7 +108,7 @@ public class TestProgram {
                     selection = selection - 1;
                     System.out.println();
                     System.out.println(restaurantList.get(selection).getRestaurantName());
-                    System.out.println("============");
+                    System.out.println("================");
                     System.out.println();
                     System.out.println("Please select menu : *press 0 to back*");
                     //System.out.println();
@@ -122,7 +122,7 @@ public class TestProgram {
                             System.out.printf("Num Food Name\t\t\tPrice(RM)\tDescription");
                             System.out.println();
                             for (int i = 0; i < restaurantList.get(selection).getMenu().size(); i++) {
-                                System.out.printf("%d . %s\t\tRM%.2f\t\t%s", i + 1, temp.get(i).getFoodName(), temp.get(i).getFoodPrice(), temp.get(i).getDesc());
+                                System.out.printf("%d . %s\t\tRM%6.2f\t\t%s", i + 1, temp.get(i).getFoodName(), temp.get(i).getFoodPrice(), temp.get(i).getDesc());
                                 System.out.println();
                         }
                         menuChoice = choice(0, restaurantList.get(selection).getMenu().size());
@@ -141,8 +141,8 @@ public class TestProgram {
                                 menuChoice -=1;
                                 System.out.println();
                                 System.out.printf("%s\t\t%.2f\n",temp.get(menuChoice).getFoodName(), temp.get(menuChoice).getFoodPrice());
-                                System.out.println("Please select quantity \nMaximum 10 quantity per order per time\n");
-                                qty = choice(0, 10);
+                                System.out.println("Please select quantity \nMaximum 100 quantity per item per order\n");
+                                qty = choice(0, 100);
                                 switch (qty) {
                                     case 0:
                                         break;
@@ -156,13 +156,46 @@ public class TestProgram {
                                        System.out.println("Confirm Order ? <Y/N>");
                                         confirm = scanner.next().charAt(0);
 
+                                        int tempQty,tempIndex=0,contain;
+                                        
                                         if (confirm == 'Y' || confirm == 'y')
                                          {
-                                             System.out.println();
+                                             tempQty = qty;
+                                             contain=0;
+                                             
+                                             for(int i=0;i<itemOrder.size();i++)
+                                             {
+                                                 if(itemOrder.contains(temp.get(menuChoice)))
+                                                 {
+                                                     contain =1;
+                                                     tempIndex = itemOrder.indexOf(temp.get(menuChoice));
+                                                     tempQty += qtyOrder.get(tempIndex);
+                                                 }
+                                             }
+                                             
+                                            if(contain ==0)
+                                            {
+                                            System.out.println();
                                             System.out.println("Order added!");
                                             itemOrder.add((temp.get(menuChoice)));
                                             qtyOrder.add(qty);
-                                            subtotal.add(qty *temp.get(menuChoice).getPrice());
+                                            subtotal.add(qty * temp.get(menuChoice).getPrice());
+                                             } else {
+                                                 if (tempQty <= 100) {
+                                                     System.out.println();
+                                                     System.out.println("Order added!");
+                                                     qtyOrder.set(tempIndex, tempQty);                                                  
+                                                     subtotal.set(tempIndex,tempQty * temp.get(menuChoice).getPrice());
+                                                     
+                                                 }
+                                                 else
+                                                 {
+                                                     System.out.println();
+                                                     System.out.println("Order for this item have exceeded 100 quantity.");
+                                                     System.out.println("Order unsuccessful!");
+                                                 }
+                                             }
+
 
                                         }
                                         else
@@ -201,13 +234,13 @@ public class TestProgram {
                         System.out.println("Num Food Name\t\t\tPrice(RM)\tQty\tSubtotal(RM)");
                         for (int i = 0; i < itemOrder.size(); i++) {
 
-                            System.out.printf("%d . %s\t\t%.2f\t\t%d\t%.2f",i+1, itemOrder.get(i).getFoodName(),itemOrder.get(i).getFoodPrice(), qtyOrder.get(i), subtotal.get(i));
+                            System.out.printf("%d . %s\t\t%4.2f\t\t%3d\t%8.2f",i+1, itemOrder.get(i).getFoodName(),itemOrder.get(i).getFoodPrice(), qtyOrder.get(i), subtotal.get(i));
                             System.out.println();
                             total += subtotal.get(i);
                         }
                         //System.out.println();
 
-                        System.out.println("-----------------------------------------------");
+                        System.out.println("----------------------------------------------------------------------------------");
                         System.out.printf("Total = RM %.2f", total);
                         System.out.println();
                         System.out.println();
