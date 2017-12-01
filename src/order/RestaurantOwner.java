@@ -54,7 +54,7 @@ public class RestaurantOwner {
         Scanner scanner = new Scanner(System.in);
 
         Item item1 = new Item("Kimchi Jiggae", 12.90, "Kimchi soup with meat");
-        Item item2 = new Item("Sundubu Jiggae", 10.90, "Kimchi soup with tofu");
+        Item item2 = new Item("Haemul Jiggae", 10.90, "Kimchi soup with tofu");
 
         menuItemsList.add(item1);
         menuItemsList.add(item2);
@@ -75,6 +75,7 @@ public class RestaurantOwner {
         String foodID, foodName, desc;
         Double foodPrice;
 
+        System.out.print("\n");
         System.out.println("--------------");
         System.out.println("Add Menu Items");
         System.out.println("--------------");
@@ -195,10 +196,10 @@ public class RestaurantOwner {
                 existPassword = affiliateDetailsList.get(i).getPassword();
 
                 if (username.equals(existUsername) && password.equals(existPassword)) {
-                    System.out.println("Login successfully");
+                    System.out.println("Login successfully!\n");
                     addItems();
                 } else if (!username.equals(existUsername) || !password.equals(existPassword)) {
-                    System.out.println("Wrong username or password");
+                    System.out.println("Wrong username or password!\n");
                 }
             }
         } else {
