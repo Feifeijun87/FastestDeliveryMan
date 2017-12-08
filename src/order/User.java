@@ -48,4 +48,14 @@ public class User {
         return address;
     }
     
+    public String getUserDetail()
+    {
+        String detail = "";
+        detail += "User ID : "+userID + "\n";
+        detail += "Name : "+ username + "\n";
+        detail += "Address : "+ address + "\n";
+        detail += "Contact Num : "+ contactNum + "\n";
+        
+        return detail;
+    }
 }
