@@ -56,8 +56,12 @@ public class Order {
     }
     public String deliveries(){
     String str="";
+    int totalItem=0;
+    for(int i=0;i<quantity.size();++i){
+        totalItem+=quantity.get(i);
+    }
     for(int i =0;i<orderItem.size();i++){
-        str+=String.format("%-25s%-4s%-20s%-20s%-20s\n",orderItem.get(i).getFoodName(),quantity.get(i).toString(),restaurant.getRestaurantName(),getUser().getUsername(),getUser().getAddress());
+        str+=String.format("%-4s%-20s%-20s%-20s\n",totalItem,restaurant.getRestaurantName(),getUser().getUsername(),getUser().getAddress());
     }
     
     return str;
