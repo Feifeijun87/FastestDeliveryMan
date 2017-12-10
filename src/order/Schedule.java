@@ -39,6 +39,17 @@ public Schedule(Order order,int dayOfWeek,String time){
         str+=getOrder().toString();
         return str;
     }
+    public String showOrder(){
+    String str="";
+    for(int i=0;i<order.getOrderItem().size();i++){
+    str+=String.format("%-3s%-20s%-12.2f%-5s%-10.2f\n",i+1,order.getOrderItem().get(i).getFoodName(),order.getOrderItem().get(i).getFoodPrice(),order.getQuantity().get(i),order.getSubtotal(i));
+   
+            
+    }
+     str+=String.format("%-40s%-5.2f","Total:",order.getTotal());
+    return str;
+    
+    }
 
     public Order getOrder() {
         return order;

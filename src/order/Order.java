@@ -33,6 +33,18 @@ public class Order {
         
     }
 
+    public Double getTotal() {
+        return total;
+    }
+
+    public List<Integer> getQuantity() {
+        return quantity;
+    }
+
+    public List<Item> getOrderItem() {
+        return orderItem;
+    }
+
     public String getOrderID() {
         return orderID;
     }
@@ -60,12 +72,14 @@ public class Order {
     for(int i=0;i<quantity.size();++i){
         totalItem+=quantity.get(i);
     }
-    for(int i =0;i<orderItem.size();i++){
         str+=String.format("%-4s%-20s%-20s%-20s\n",totalItem,restaurant.getRestaurantName(),getUser().getUsername(),getUser().getAddress());
-    }
+    
     
     return str;
         
+    }
+    public double getSubtotal(int number){
+    return orderItem.get(number).getFoodPrice()*quantity.get(number);
     }
 
     @Override

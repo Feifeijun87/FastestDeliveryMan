@@ -16,6 +16,9 @@ public class Item {
     private Double foodPrice;
     private String desc;
     private static Integer count = 1;
+
+    public Item() {
+    }
     
     Item(String name, Double price, String desc)
     {

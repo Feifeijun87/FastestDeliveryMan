@@ -39,10 +39,15 @@ public class Restaurant {
     {
         return menu;
     }
+    public int menuSize(){
+    return this.menu.size();
+    }
 
     public String getRestAddress() {
         return restAddress;
     }
+
+   
 
     
     
