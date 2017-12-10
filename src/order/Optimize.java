@@ -82,8 +82,8 @@ public class Optimize {
         order.add(order4);
         orderq= new ArrayList<Order>(order);
 
-        Schedule schedule1=new Schedule(order1,2,"0900");
-        Schedule schedule2=new Schedule(order2,2,"1000");
+        Schedule schedule1=new Schedule(order1,7,"0900");
+        Schedule schedule2=new Schedule(order2,7,"1000");
         Schedule schedule3=new Schedule(order3,1,"2000");
         Schedule schedule4=new Schedule(order4,1,"1200");
         List<Schedule> schedule = new ArrayList<>();
@@ -117,7 +117,7 @@ public class Optimize {
         }
         }
         String str="";
-        str+=String.format("%-4s%-6s%-25s%-4s%-20s%-20s%-20s\n","No","Time","Food Name","Qty","Restaurant Name","Customer Name","Address");
+        str+=String.format("%-4s%-6s%-5s%-20s%-20s%-20s\n","No","Time","Item","Restaurant Name","Customer Name","Address");
         for(int i=0;i<temp.size();i++){
             str+=i+1+".  "+temp.get(i).getTime()+ "  "+temp.get(i).getOrder().deliveries();
         }
