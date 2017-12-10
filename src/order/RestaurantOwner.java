@@ -478,4 +478,58 @@ public class RestaurantOwner {
 
         System.out.println("Items removed successfully!");
     }
+    
+    public void itemsSequence(){
+        Scanner scanner = new Scanner(System.in);
+
+        Item item1 = new Item("Kimchi Jiggae", 12.90, "Kimchi soup with meat");
+        Item item2 = new Item("Haemul Jiggae", 10.90, "Kimchi soup with tofu");
+        Item item3 = new Item("Sundae Jiggae", 11.90, "Sundae soup with rice");
+
+        menuItemsList.add(item1);
+        menuItemsList.add(item2);
+        menuItemsList.add(item3);
+
+        Integer input;
+
+        System.out.println("---------");
+        System.out.println("Menu List");
+        System.out.println("---------");
+
+        if (menuItemsList.isEmpty()) {
+            System.out.println("No record inside.");
+        } else {
+            for (int i = 0; i < menuItemsList.size(); ++i) {
+                System.out.println((i + 1) + "\t" + menuItemsList.get(i).menuItems());
+            }
+        }
+        
+        System.out.println("");
+        System.out.println("Please select the item to be placed on top > ");
+        input = scanner.nextInt();
+        
+        input = input - 1;
+        int temp = 0;
+        
+        for (int i = 0; i < menuItemsList.size(); ++i) {
+            if (i == input) {
+                temp = input;
+            }
+        }
+
+        System.out.print("\n");
+        System.out.println("------------");
+        System.out.println("Updated Menu");
+        System.out.println("------------");
+
+        if (menuItemsList.isEmpty()) {
+            System.out.println("No record inside.");
+        } else {
+            for (int i = 0; i < menuItemsList.size(); ++i) {
+                System.out.println((i + 1) + "\t" + menuItemsList.get(i).menuItems());
+            }
+        }
+
+        System.out.println("Items updated successfully!");
+    }
 }
