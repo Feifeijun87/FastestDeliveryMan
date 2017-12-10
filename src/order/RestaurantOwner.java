@@ -93,13 +93,22 @@ public class RestaurantOwner {
         Item item = new Item(foodName, foodPrice, desc);
         menuItemsList.add(item);
 
+        System.out.print("\n");
+        System.out.println("--------------");
+        System.out.println("Updated Menu Items");
+        System.out.println("--------------");
+
         if (menuItemsList.isEmpty()) {
             System.out.println("No record inside.");
         } else {
             for (int i = 0; i < menuItemsList.size(); ++i) {
                 System.out.println(menuItemsList.get(i));
             }
+
         }
+
+        System.out.print("\n");
+        System.out.println("Item(s) added successfully!");
     }
 
     public void register() {
@@ -168,6 +177,8 @@ public class RestaurantOwner {
 
         System.out.println("");
         System.out.println("Affiliate " + affiliateName + " has been registered successfully.");
+
+        mainMenu();
     }
 
     public void login() {
@@ -179,10 +190,10 @@ public class RestaurantOwner {
         String username, password;
         String existUsername, existPassword;
 
+        System.out.println("");
         System.out.println("-----");
         System.out.println("Login");
         System.out.println("-----");
-        System.out.println("");
 
         System.out.print("Username > ");
         username = scanner.nextLine();
@@ -197,7 +208,7 @@ public class RestaurantOwner {
 
                 if (username.equals(existUsername) && password.equals(existPassword)) {
                     System.out.println("Login successfully!\n");
-                    addItems();
+                    mainMenu();
                 } else if (!username.equals(existUsername) || !password.equals(existPassword)) {
                     System.out.println("Wrong username or password!\n");
                 }
@@ -242,5 +253,50 @@ public class RestaurantOwner {
         } while (valid);
 
         return choice;
+    }
+
+    public void mainMenu() {
+        Scanner scanner = new Scanner(System.in);
+
+        RestaurantOwner ro = new RestaurantOwner();
+        Integer input;
+
+        System.out.println("---------");
+        System.out.println("Main Menu");
+        System.out.println("---------");
+
+        System.out.println("Please choose an option: ");
+        System.out.println("1 - Add item(s)");
+        System.out.println("2 - Update item(s)");
+        System.out.println("3 - Remove item(s)");
+        System.out.println("4 - Exit");
+        System.out.println("");
+
+        input = choice(1, 3);
+
+        switch (input) {
+            case 1:
+                ro.addItems();
+                break;
+            case 2:
+                ro.updateItems();
+                break;
+            case 3:
+                ro.removeItems();
+                break;
+            case 4:
+                System.out.println("Thank you!");
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void updateItems() {
+
+    }
+
+    public void removeItems() {
+
     }
 }
