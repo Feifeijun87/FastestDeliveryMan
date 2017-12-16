@@ -185,7 +185,7 @@ public class RestaurantOwner {
     public void login() {
         Scanner scanner = new Scanner(System.in);
 
-        AffiliateDetails ad = new AffiliateDetails("Restaurant BTS", "Hitman", "Bang", "Bighit", "bts@gmail.com", "www.bts.com", "Korea", "19970507", "kimseokjin", "lovebts");
+        AffiliateDetails ad = new AffiliateDetails("Restaurant BTS", "Hitman", "Bang", "Bighit", "bts@gmail.com", "www.bts.com", "Korea", "19970507", "jin", "bts");
         affiliateDetailsList.add(ad);
 
         String username, password;
@@ -278,10 +278,11 @@ public class RestaurantOwner {
         System.out.println("1 - Add item(s)");
         System.out.println("2 - Update item(s)");
         System.out.println("3 - Remove item(s)");
-        System.out.println("4 - Exit");
+        System.out.println("4 - Re-order item sequence");
+        System.out.println("5 - Exit");
         System.out.println("");
 
-        input = choice(1, 4);
+        input = choice(1, 5);
 
         switch (input) {
             case 1:
@@ -293,7 +294,10 @@ public class RestaurantOwner {
             case 3:
                 ro.removeItems();
                 break;
-            case 4:
+                case 4:
+                ro.itemsSequence();
+                break;
+            case 5:
                 System.out.println("Thank you!");
                 break;
             default:
@@ -394,7 +398,7 @@ public class RestaurantOwner {
 
                     for (int i = 0; i < menuItemsList.size(); ++i) {
                         if (i == select) {
-                            menuItemsList.get(i).setPrice(newPrice);
+                            menuItemsList.get(i).setFoodPrice(newPrice);
                         }
                     }
                     break;
@@ -505,7 +509,7 @@ public class RestaurantOwner {
         }
         
         System.out.println("");
-        System.out.println("Please select the item to be placed on top > ");
+        System.out.print("Please select the item to be placed on top > ");
         input = scanner.nextInt();
         
         input = input - 1;
