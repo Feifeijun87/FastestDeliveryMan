@@ -13,10 +13,12 @@ class DeliveryMen {
     public String name;
     public String id;
     public String status;
-    public DeliveryMen(String name, String id, String status){
+    public String date;
+    public DeliveryMen(String name, String id, String status, String date){
         this.name = name;
         this.id = id;
         this.status = status;
+        this.date = date;
         
     }
 }

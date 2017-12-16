@@ -48,7 +48,7 @@ public class TaskAssign {
          System.out.println(available.get(h).name);
       }
       
-           User user1 = new User("Fiffy","cute88","Jalan Cutie,Klang","011-111111");
+           User user1 = new User("Fiffy","cute88","Jalan Cuties,Klang","011-111111");
            User user2 = new User("Sixty","nocute87","Jalan Ugly,Setapak","012-9487953");
         
         Item item1 = new Item("Chicken Chop", 12.90, "Golden chicken coated with ABC gravy");
@@ -112,10 +112,10 @@ public class TaskAssign {
         order.add(order4);
         orderq= new ArrayList<Order>(order);
 
-        Schedule schedule1=new Schedule(order1,1,"0900");
-        Schedule schedule2=new Schedule(order2,1,"1000");
-        Schedule schedule3=new Schedule(order3,1,"2000");
-        Schedule schedule4=new Schedule(order4,1,"1200");
+        Schedule schedule1=new Schedule(order1,7,"0900");
+        Schedule schedule2=new Schedule(order2,7,"1000");
+        Schedule schedule3=new Schedule(order3,7,"1000");
+        Schedule schedule4=new Schedule(order4,7,"1200");
         List<Schedule> schedule = new ArrayList<>();
         schedule.add(schedule1);
         schedule.add(schedule2);
@@ -141,11 +141,11 @@ public class TaskAssign {
         }
         }
         String str="";
-        str+=String.format("%-4s%-6s%-25s%-4s%-20s%-20s%-20s%-10s%-15s\n","No","Time","Food Name","Qty","Restaurant Name","Customer Name","Address","Delivery Man ID", "Delivery Man Name");
+        str+=String.format("%-4s%-5s%-8s%-24s%-25s%-15s%-15s\n","No","Time","OrderID","Customer Name","Address","DeliveryManID", "DeliveryManName");
         for(int i=0;i<temp.size();i++){
            if(count !=0)
            {
-                str+=i+1+".  "+temp.get(i).getTime()+ "  "+temp.get(i).getOrder().deliveries() +" "+ available.get(0).id +" " + available.get(0).name;
+                str+=i+1+".  "+temp.get(i).getTime()+ "  "+temp.get(i).getOrder().getOrderID()+"         " + temp.get(i).getOrder().getUser().getUsername()+"    " + temp.get(i).getOrder().getUser().getAddress() + " " + temp.get(i).getOrder().getRestaurant(). getRestaurantName() +"     " + available.get(0).id +"           " + available.get(0).name + "\n";
                 available.remove(0);
                 --count;
            }

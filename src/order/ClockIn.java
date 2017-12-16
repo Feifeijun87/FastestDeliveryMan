@@ -16,6 +16,8 @@ import java.util.Scanner;
  * @author user
  */
 public class ClockIn {
+
+  
     public static void main(String[] args) { 
        enter();
     
@@ -24,7 +26,7 @@ public class ClockIn {
     public static void enter(){
         
     Scanner input = new Scanner (System.in);
-        System.out.println("Please Enter your ID (leave blank to exit): ");
+        System.out.println("Please Enter your ID: ");
         String wID = input.nextLine();
         if(wID.equals(""))
         {
@@ -37,15 +39,14 @@ public class ClockIn {
     }
     
     public static void information(String wID){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy ss:mm:HH");
 Date date = new Date();
     boolean check = false;
-    boolean check2 = false;
     int count = 0;
-    DeliveryMen D1 = new DeliveryMen ("Hahaha", "D001", "Delivering");
-    DeliveryMen D2 = new DeliveryMen ("Bobo", "D002", "Available");
-    DeliveryMen D3 = new DeliveryMen ("Keke", "D003", "Break");
-    DeliveryMen D4 = new DeliveryMen ("XDD", "D004", "Delivering");
+    DeliveryMen D1 = new DeliveryMen ("Hahaha", "D001", "Delivering", "16/12/2017 22:46:14");
+    DeliveryMen D2 = new DeliveryMen ("Bobo", "D002", "Available","");
+    DeliveryMen D3 = new DeliveryMen ("Keke", "D003", "Break","");
+    DeliveryMen D4 = new DeliveryMen ("XDD", "D004", "Delivering","");
     ArrayList<DeliveryMen> obj = new ArrayList<DeliveryMen>();
       obj.add(D1);
       obj.add(D2);
@@ -73,20 +74,24 @@ Date date = new Date();
      }
      else if(check == true)
      {
-         do{
          System.out.println("Is This your Profile?(Y/N)");
          Scanner input2 = new Scanner(System.in);
           char wCon = input2.next().charAt(0);
-          
           if(wCon == 'Y')
           {
-              System.out.println(obj.get(count).id + " " + obj.get(count).name + " " + dateFormat.format(date) );
-              check2=true;
+              if(obj.get(count).date.equals(""))
+              {
+              System.out.println("ID: "  +obj.get(count).id + "\n" +"Name" + obj.get(count).name + "\n" +"Date: " + dateFormat.format(date) );
+              obj.get(count).date = dateFormat.format(date);
+              }
+              else
+              {
+              System.out.println("Sorry you can only clock in once a day");
+              }
           }
           else if(wCon == 'N')
           {
             enter();
-            break;
           }
           else if(wCon == '0')
           {
@@ -95,10 +100,8 @@ Date date = new Date();
           else
           {
               System.out.println("Wrong Input, Please Try Again");
-             
-              
           }
-          }while(check2 == false);
+          
           
           
           
@@ -109,11 +112,3 @@ Date date = new Date();
      }
     }
      
-    
-     
-     
-    
-    
-
-
-
