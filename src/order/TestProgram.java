@@ -17,7 +17,7 @@ public class TestProgram {
 
         Scanner scanner = new Scanner(System.in);
 
-        User user1 = new User("Fiffy", "cute88", "Jalan Cutie", "011111111");
+        User user1 = new User("Fiffy", "cute88", "Jalan Cutie", "0111111111");
         User user2 = new User("Bingbing", "bingcute", "Jalan Cutie", "0124433335");
 
         Item item1 = new Item("Chicken Chop", 12.90, "Golden chicken coated with ABC gravy");
@@ -105,7 +105,18 @@ public class TestProgram {
                 
 
             if( proceed == true) {
-                for (int i = 0; i < contact.length(); i++) {
+                    
+                
+                if(contact.length()<10 || contact.length()>12)
+                {System.out.println("Please enter a valid phone number !");
+                    valid = false;
+                     
+
+                }
+                
+                else
+                {
+                    for (int i = 0; i < contact.length(); i++) {
                     check = contact.charAt(i);
                     if (!Character.isDigit(check)) {
                         System.out.println("\nPlease enter digit only ! ");
@@ -113,7 +124,7 @@ public class TestProgram {
                         break;
 
                     }
-
+                }
                 }
 
                 if (valid == true) {
